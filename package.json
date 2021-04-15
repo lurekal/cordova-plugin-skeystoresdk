@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-skeystoresdk",
+  "version": "0.0.1",
+  "description": "samsung keystore sdk",
+  "cordova": {
+    "id": "cordova-plugin-skeystoresdk",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lurekal/cordova-plugin-skeystoresdk.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "lurekal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lurekal/cordova-plugin-skeystoresdk/issues"
+  },
+  "homepage": "https://github.com/lurekal/cordova-plugin-skeystoresdk#readme"
+}
