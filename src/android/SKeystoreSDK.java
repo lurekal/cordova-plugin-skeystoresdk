@@ -1,4 +1,4 @@
-package cordova-plugin-skeystoresdk;
+package com.skeystoresdk;;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
