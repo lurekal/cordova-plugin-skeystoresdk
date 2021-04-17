@@ -1,5 +1,12 @@
 var exec = require('cordova/exec');
 
-exports.coolMethod = function (arg0, success, error) {
-    exec(success, error, 'SKeystoreSDK', 'coolMethod', [arg0]);
-};
+
+var SKeystoreSDK = {
+    coolMethod :function (message,index, success, error) {
+        exec(success, error, 'SKeystoreSDK', 'coolMethod', [message,index]);
+    }
+}
+
+
+
+module.exports = SKeystoreSDK;
