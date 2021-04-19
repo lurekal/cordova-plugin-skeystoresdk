@@ -36,6 +36,7 @@ public class SKeystoreSDK extends CordovaPlugin {
     private final static int DEEPLINK_DISPLAY_WALLET = 4;
     private final static int DEEPLINK_NOTICE_CONTENT = 5;
     private final static int DEEPLINK_GALAXY_STORE = 6;
+    private final static int DEEPLINK_BACKUP_WALLET = 7;
 
     private final static int SUCCESS = 1;
     private final static int FAIL = 0;
@@ -321,6 +322,10 @@ public class SKeystoreSDK extends CordovaPlugin {
                 case DEEPLINK_GALAXY_STORE :
                     link = ScwDeepLink.GALAXY_STORE;
                     break;
+                case DEEPLINK_BACKUP_WALLET :
+                    link = ScwDeepLink.BACKUP_WALLET;
+                    break;
+
                 default :
                     callbackContext.error("linkSDK error: wrong code");
                     return;
