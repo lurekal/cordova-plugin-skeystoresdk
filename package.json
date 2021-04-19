@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-skeystoresdk",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "samsung keystore sdk",
   "cordova": {
     "id": "cordova-plugin-skeystoresdk",
@@ -14,7 +14,9 @@
   },
   "keywords": [
     "ecosystem:cordova",
-    "cordova-android"
+    "cordova-android",
+    "samsung",
+    "keystore"
   ],
   "author": "lurekal",
   "license": "ISC"
