@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-skeystoresdk",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "samsung keystore sdk",
   "cordova": {
     "id": "cordova-plugin-skeystoresdk",

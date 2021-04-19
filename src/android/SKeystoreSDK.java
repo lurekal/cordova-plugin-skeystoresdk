@@ -1,5 +1,4 @@
-package com.msline.samsungblockchainsdk;
-
+package com.skeystoresdk;
 import com.samsung.android.sdk.coldwallet.*;
 
 import android.app.Activity;
@@ -25,7 +24,7 @@ import java.lang.StringBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SamsungBlockchainSDK extends CordovaPlugin {
+public class SKeystoreSDK extends CordovaPlugin {
 
     private ScwService scw = null;
     private static final String LOG_TAG = "SamsungBlockchainSDK";
