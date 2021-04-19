@@ -8,6 +8,7 @@ repositories{
 dependencies {
   implementation(name:'KeystoreSDK-release-v1.5.1', ext:'aar')
   implementation group: 'org.web3j', name: 'core', version: '4.2.0'
+  implementation 'androidx.appcompat:appcompat:1.2.0'
 }
 
 android {

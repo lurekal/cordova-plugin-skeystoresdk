@@ -1,6 +1,7 @@
 package com.skeystoresdk;
-import com.samsung.android.sdk.coldwallet.*;
 
+import com.samsung.android.sdk.coldwallet.*;
+import androidx.annotation.Nullable;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SKeystoreSDK extends CordovaPlugin {
-
     private ScwService scw = null;
     private static final String LOG_TAG = "SamsungBlockchainSDK";
     private Activity currentActivity;
@@ -36,7 +36,6 @@ public class SKeystoreSDK extends CordovaPlugin {
     private final static int DEEPLINK_DISPLAY_WALLET = 4;
     private final static int DEEPLINK_NOTICE_CONTENT = 5;
     private final static int DEEPLINK_GALAXY_STORE = 6;
-    private final static int DEEPLINK_BACKUP_WALLET = 7;//추가
 
     private final static int SUCCESS = 1;
     private final static int FAIL = 0;
@@ -94,7 +93,6 @@ public class SKeystoreSDK extends CordovaPlugin {
 
     }
 
-    //동일
     private void getInstance(CallbackContext callbackContext) {
         try {
             if (this.scw != null) callbackContext.success(SUCCESS);
@@ -104,7 +102,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //동일
     private void getKeystoreApiLevel(CallbackContext callbackContext) {
         try {
             int level = this.scw.getKeystoreApiLevel();
@@ -114,17 +111,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //추가
-    private void isRootSeedBackedUp(CallbackContext callbackContext) {
-        try {
-            boolean isrootseedbackup = this.scw.isRootSeedBackedUp();
-            callbackContext.success(isrootseedbackup);
-        } catch (Exception e) {
-            callbackContext.error("isRootSeedBackedUp error: " + e.toString());
-        }
-    }
-
-    //동일
     private void checkMandatoryAppUpdate(CallbackContext callbackContext) {
         try {
             ScwService.ScwCheckForMandatoryAppUpdateCallback callback = new ScwService.ScwCheckForMandatoryAppUpdateCallback() {
@@ -143,7 +129,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //동일
     private void getSeedHash(CallbackContext callbackContext) {
         try {
             String seedHash = this.scw.getSeedHash();
@@ -153,7 +138,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //동일
     private void getAddress(int index, CallbackContext callbackContext) {
         try {
             ScwService.ScwGetAddressListCallback callback = new ScwService.ScwGetAddressListCallback() {
@@ -171,7 +155,9 @@ public class SKeystoreSDK extends CordovaPlugin {
                 }
 
                 @Override
-                public void onFailure(int errorCode) {}
+                public void onFailure(int i, @Nullable String s) {
+
+                }
             };
 
             String hdpath = "m/44'/60'/0'/0/" + index;
@@ -186,7 +172,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //동일
     private void getPublicKey(int index, CallbackContext callbackContext) {
         try {
             ScwService.ScwGetExtendedPublicKeyListCallback callback = new ScwService.ScwGetExtendedPublicKeyListCallback() {
@@ -204,7 +189,9 @@ public class SKeystoreSDK extends CordovaPlugin {
                 }
 
                 @Override
-                public void onFailure(int errorCode) {}
+                public void onFailure(int i, @Nullable String s) {
+
+                }
             };
 
             String hdpath = "m/44'/60'/0'/0/" + index;
@@ -219,7 +206,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //동일
     private void signTransaction(JSONArray args, CallbackContext callbackContext) {
         try {
             ScwService.ScwSignEthTransactionCallback callback = new ScwService.ScwSignEthTransactionCallback() {
@@ -228,9 +214,13 @@ public class SKeystoreSDK extends CordovaPlugin {
                     callbackContext.success(toHexString(signedEthTransaction, true));
                 }
 
+                //        @Override
+//        public void onFailure(int errorCode) {
+//          callbackContext.error("signTransaction error: " + errorCode);
+//        }
                 @Override
-                public void onFailure(int errorCode) {
-                    callbackContext.error("signTransaction error: " + errorCode);
+                public void onFailure(int i, @Nullable String s) {
+
                 }
             };
 
@@ -248,7 +238,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //동일
     private void signPersonalMessage(JSONArray args, CallbackContext callbackContext) {
         try {
             int index = args.getInt(1);
@@ -259,9 +248,14 @@ public class SKeystoreSDK extends CordovaPlugin {
                     getAddress(index, callbackContext);
                 }
 
+//        @Override
+//        public void onFailure(int errorCode) {
+//          callbackContext.error("signPersonalMessage error: " + errorCode);
+//        }
+
                 @Override
-                public void onFailure(int errorCode) {
-                    callbackContext.error("signPersonalMessage error: " + errorCode);
+                public void onFailure(int i, @Nullable String s) {
+
                 }
             };
 
@@ -277,7 +271,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //자체기능 추정
     private byte[] encodedUnsignedEthTx(JSONArray args) {
         try {
             JSONObject rawTransaction = args.getJSONObject(0);
@@ -304,7 +297,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //수정
     private void linkSDK(int urlcode, CallbackContext callbackContext) {
         try {
 
@@ -329,10 +321,6 @@ public class SKeystoreSDK extends CordovaPlugin {
                 case DEEPLINK_GALAXY_STORE :
                     link = ScwDeepLink.GALAXY_STORE;
                     break;
-//추가
-                case DEEPLINK_BACKUP_WALLET :
-                    link = ScwDeepLink.BACKUP_WALLET;
-                    break;
                 default :
                     callbackContext.error("linkSDK error: wrong code");
                     return;
@@ -347,7 +335,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         }
     }
 
-    //자체기능 추정
     private void moveLink(String link) {
         Uri uri = Uri.parse(link);
         Intent displayIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -360,7 +347,6 @@ public class SKeystoreSDK extends CordovaPlugin {
         currentActivity.startActivity(intent);
     }
 
-    //자체기능 추정
     private static String toHexString(byte[] input, boolean withPrefix) {
         StringBuilder stringBuilder = new StringBuilder();
         if (withPrefix) {
