@@ -1,0 +1,18 @@
+repositories{
+  jcenter()
+  flatDir{
+    dirs 'libs'
+  }
+}
+
+dependencies {
+  implementation(name:'KeystoreSDK-release-v1.5.1', ext:'aar')
+  implementation group: 'org.web3j', name: 'core', version: '4.2.0'
+}
+
+android {
+  packagingOptions {
+    exclude 'META-INF/NOTICE'
+    exclude 'META-INF/LICENSE'
+  }
+}

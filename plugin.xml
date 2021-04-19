@@ -12,6 +12,8 @@
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <framework src="src/build.gradle" custom="true" type="gradleReference" />
+        <lib-file src="lib/KeystoreSDK-release-v1.5.1.aar"/>
         <source-file src="src/android/SKeystoreSDK.java" target-dir="src/com/skeystoresdk"/>
     </platform>
 </plugin>
